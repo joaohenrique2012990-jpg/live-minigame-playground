@@ -14,4 +14,12 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+
+  it("matches a page for /overlay/torre successfully", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+
+    const matches = router.matchRoutes("/overlay/torre");
+
+    expect(matches.at(-1)?.routeId).toBe("/overlay_/torre");
+  });
 });
