@@ -157,3 +157,24 @@ html.overlay-transparent,
 html.overlay-transparent body {
   background: transparent;
 }
+
+/* Jogo da torre */
+:root {
+  --gradient-terra: linear-gradient(180deg, oklch(0.32 0.05 55), oklch(0.2 0.04 45) 60%, oklch(0.14 0.03 40));
+  --bloco-laranja: oklch(0.72 0.18 50);
+  --bloco-verde: oklch(0.72 0.18 145);
+  --bloco-azul: oklch(0.65 0.17 250);
+  --bloco-amarelo: oklch(0.86 0.17 95);
+  --bloco-rosa: oklch(0.72 0.2 350);
+  --negativo: oklch(0.63 0.23 25);
+  --positivo: oklch(0.72 0.2 145);
+}
+@theme inline {
+  --color-negativo: var(--negativo);
+  --color-positivo: var(--positivo);
+}
+@utility bg-terra { background-image: var(--gradient-terra); }
+@keyframes bloco-entra { from { transform: translateY(-40px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes vitoria-pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@utility animate-bloco { animation: bloco-entra 0.3s ease-out; }
+@utility animate-vitoria { animation: vitoria-pop 0.3s ease-out; }
