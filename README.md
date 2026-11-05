@@ -1,35 +1,88 @@
-# Live Minigame Playground
+# 🎮 TikPlay Live — Jogos Interativos para TikTok LIVE
 
-Crie um painel pessoal em português (BR) para eu controlar jogos interativos na minha live do TikTok (o público joga pelo chat, curtidas e presentes, e eu uso o overlay no OBS). Uso só meu: SEM login, SEM pagamento, SEM planos, SEM landing de vendas.
+Plataforma completa de minijogos interativos estilo **TikPlay.games** para transmissões ao vivo no **TikTok LIVE** com suporte a **OBS Studio**, **TikTok Live Studio** e **Prism Live Studio**.
 
-Estilo: tema escuro (#0B0B12), cards arredondados, gradiente roxo→rosa→ciano nos destaques, fontes Space Grotesk (títulos) e Inter (texto). Limpo, moderno, responsivo.
+O público interage e joga em tempo real através de **comentários no chat**, **curtidas** e **presentes** (Rosas, Donuts, Galáxias, Leões, etc.).
 
-Uma única página com sidebar simples e 3 áreas:
-1. Início: campo para meu @usuário do TikTok com status "Conectado/Offline" e 4 cards de métricas mockadas (espectadores, partidas, presentes, tempo médio).
-2. Jogos: grid de 6 cards de minijogos (nome, descrição curta, toggle liga/desliga e botão "Configurar").
-3. Overlay: campo com link de browser source + botão "Copiar" e seletores de cor com pré-visualização ao lado.
+---
 
-Regras: dados mockados, sem backend, sem autenticação, sem animações pesadas, sem outras páginas.
+## 🕹️ Minijogos Inclusos e Jogáveis
 
-This project was built with [Lovable](https://lovable.dev).
+1. **⚔️ Nations at War (Guerra de Nações)**:
+   - 4 Facções: 🇧🇷 Brasil (`#brasil`), 🇺🇸 EUA (`#usa`), 🇦🇷 Argentina (`#argentina`), 🇯🇵 Japão (`#japao`).
+   - Comentários no chat geram tropas.
+   - Presentes invocam tanques e bombardeios aéreos para conquistar os 100 territórios do mapa.
+2. **🪢 Cabo de Guerra (Tug of War)**:
+   - Disputa entre **Time Rosa** (`#rosa`) e **Time Azul** (`#azul`).
+   - Curtidas e comentários puxam a corda; presentes desferem puxões gigantes.
+3. **🥊 Duelo de Tapas (Slap Battle Arena)**:
+   - Batalha 1v1 entre Lutador 1 (`#1`) e Lutador 2 (`#2`).
+   - Barra de HP, efeitos visuais de impacto (*POW!*, *TAPAÇO!*, *CRÍTICO!*) e nocaute.
+4. **🎰 Plinko da Sorte**:
+   - Tabuleiro com pinos e física realista.
+   - Multiplicadores na base: `2x`, `5x`, `20x` e `100x JACKPOT`.
+5. **🧱 Torre de Blocos 3D**:
+   - Torre isométrica em SVG 3D onde presentes empilham ou derrubam blocos ao vivo.
 
-**Live app**: https://live-minigame-playground.lovable.app
+---
 
-## Build with Lovable
+## ⚡ Conexão com o TikTok LIVE
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/a61dbc21-a03a-499d-95c4-9c748712b107).
+O projeto conta com **2 modos de conexão**:
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+### 1. 🧪 Modo Simulador Integrado (Sem precisar estar ao vivo)
+- Clique no botão flutuante **"🧪 Testar TikTok Live"** no canto inferior direito.
+- Você pode simular curtidas em massa, comentários de times (`#brasil`, `#rosa`, `#1`, etc.) e presentes (`Rosa`, `Donut`, `Galáxia`).
+- Há também o modo **"Auto Live"**, que dispara interações automáticas a cada 2 segundos para testar overlays no OBS.
 
-## Development
+### 2. 📡 Conexão Real com a sua Live (via `tiktok-live-connector`)
+Para receber comentários e presentes reais da sua transmissão:
+1. Abra um terminal na pasta do projeto.
+2. Execute o comando com o seu usuário do TikTok:
+   ```bash
+   node tiktok-bridge.mjs seu_usuario_tiktok
+   ```
+   *(Ou execute `npm run bridge -- seu_usuario_tiktok`)*
+3. A ponte iniciará um servidor WebSocket na porta `21213`. O painel e os overlays conectarão automaticamente e receberão todos os eventos da live com latência de menos de 100ms!
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+---
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+## 🎥 Como Usar no OBS Studio / TikTok Live Studio
+
+1. Inicie a aplicação com `npm run dev` (ou acesse o link publicado).
+2. No OBS Studio, adicione uma nova fonte: **Navegador (Browser Source)**.
+3. Coloque a URL do jogo desejado:
+   - **Guerra de Nações**: `http://localhost:3000/overlay?game=nations-at-war`
+   - **Cabo de Guerra**: `http://localhost:3000/overlay?game=tug-of-war`
+   - **Duelo de Tapas**: `http://localhost:3000/overlay?game=slap-battle`
+   - **Plinko da Sorte**: `http://localhost:3000/overlay?game=plinko-luck`
+   - **Torre de Blocos 3D**: `http://localhost:3000/overlay/torre`
+4. Configure a resolução:
+   - Para Live Vertical (celular): Largura: `1080`, Altura: `1920`.
+   - Para Live Horizontal (PC): Largura: `1920`, Altura: `1080`.
+5. Marque a opção **"Desligar fonte quando não visível"** se desejar.
+
+---
+
+## 🚀 Como Executar Localmente
+
+```bash
+# Instalar dependências
+npm install
+
+# Rodar em modo de desenvolvimento
 npm run dev
+
+# Compilar para produção
+npm run build
 ```
+
+---
+
+## 📦 Tecnologias Utilizadas
+- **React 19** + **TypeScript**
+- **TanStack Router & TanStack Start**
+- **Tailwind CSS v4** (Tema Dark Cyberpunk & Efeitos Neon)
+- **Web Audio API** (Efeitos sonoros nativos sem arquivos externos)
+- **tiktok-live-connector** + **ws** (Integração oficial TikTok Live)
+- **Lucide Icons**
