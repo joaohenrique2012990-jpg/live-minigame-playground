@@ -26,6 +26,7 @@ import { NationsAtWarGame } from "@/components/games/NationsAtWarGame";
 import { TugOfWarGame } from "@/components/games/TugOfWarGame";
 import { SlapBattleGame } from "@/components/games/SlapBattleGame";
 import { PlinkoGame } from "@/components/games/PlinkoGame";
+import { TorreDeBlocosGame } from "@/components/games/TorreDeBlocosGame";
 import { TikTokConnectModal } from "@/components/TikTokConnectModal";
 import { LiveSimulatorToolbar } from "@/components/LiveSimulatorToolbar";
 import { tikTokManager } from "@/lib/tiktok";
@@ -509,6 +510,14 @@ function TikPlayHome() {
               >
                 🎰 Plinko
               </button>
+              <button
+                onClick={() => setActiveGameId("tower-blocks")}
+                className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${
+                  activeGameId === "tower-blocks" ? "bg-orange-500 text-white" : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                }`}
+              >
+                🧱 Torre de Blocos
+              </button>
             </div>
           </div>
 
@@ -518,20 +527,7 @@ function TikPlayHome() {
             {activeGameId === "tug-of-war" && <TugOfWarGame />}
             {activeGameId === "slap-battle" && <SlapBattleGame />}
             {activeGameId === "plinko-luck" && <PlinkoGame />}
-            {activeGameId === "tower-blocks" && (
-              <div className="p-8 text-center">
-                <h3 className="font-display text-2xl font-bold text-white mb-2">🧱 Torre de Blocos 3D</h3>
-                <p className="text-sm text-slate-400 max-w-md mx-auto mb-4">
-                  O jogo completo da Torre de Blocos 3D está disponível com rota exclusiva de overlay no OBS.
-                </p>
-                <Link
-                  to="/overlay/torre"
-                  className="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-2.5 font-bold text-white"
-                >
-                  Abrir Torre de Blocos 3D
-                </Link>
-              </div>
-            )}
+            {activeGameId === "tower-blocks" && <TorreDeBlocosGame />}
           </div>
         </section>
 
