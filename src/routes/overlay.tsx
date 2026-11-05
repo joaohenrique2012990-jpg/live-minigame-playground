@@ -59,7 +59,7 @@ function Overlay() {
     <div className="flex min-h-screen flex-col justify-center gap-6 p-8 font-sans text-foreground">
       <div className="text-center">
         <h1 className="font-display text-4xl font-bold text-brand drop-shadow">Corrida do Chat</h1>
-        <p className="mt-1 text-lg font-semibold drop-shadow">Comente para acelerar seu corredor!</p>
+        <p className="mx-auto mt-2 w-fit rounded-full bg-background/70 px-4 py-1 text-lg font-semibold">Comente para acelerar seu corredor!</p>
       </div>
 
       <div className="mx-auto w-full max-w-5xl space-y-3 rounded-2xl bg-background/70 p-5">
