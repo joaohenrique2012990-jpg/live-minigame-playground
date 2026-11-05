@@ -151,3 +151,9 @@
 @utility bg-brand { background-image: var(--gradient-brand); }
 @utility text-brand { background-image: var(--gradient-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
 @utility border-brand { border: 1px solid transparent; background: linear-gradient(var(--card), var(--card)) padding-box, var(--gradient-brand) border-box; }
+
+/* Rota /overlay: fundo transparente para Browser Source do OBS */
+html.overlay-transparent,
+html.overlay-transparent body {
+  background: transparent;
+}
