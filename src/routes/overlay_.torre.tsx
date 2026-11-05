@@ -41,7 +41,7 @@ const MAX_VISIVEIS = 18;
 function Bloco({ cor }: { cor: string }) {
   const c = `var(${cor})`;
   return (
-    <svg viewBox="0 0 100 58" className="-mb-[14%] block w-full animate-bloco" aria-hidden>
+    <svg viewBox="0 0 100 58" className="-mb-[30%] block w-full animate-bloco" aria-hidden>
       <polygon points="50,0 100,14 50,28 0,14" fill={c} />
       <polygon points="0,14 50,28 50,58 0,44" fill={c} style={{ filter: "brightness(0.75)" }} />
       <polygon points="100,14 50,28 50,58 100,44" fill={c} style={{ filter: "brightness(0.55)" }} />
@@ -112,7 +112,7 @@ function Torre() {
             <div className="flex w-3/4 flex-1 flex-col-reverse items-center justify-start pb-4 pt-4">
               <div className="h-3 w-full rounded-full bg-background/60" />
               {Array.from({ length: blocos }, (_, i) => (
-                <div key={i} className="relative w-full" style={{ zIndex: blocos - i }}>
+                <div key={i} className="relative w-full" style={{ zIndex: i + 1 }}>
                   <Bloco cor={CORES[i % CORES.length]!} />
                 </div>
               ))}
