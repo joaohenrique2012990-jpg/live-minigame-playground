@@ -94,7 +94,7 @@ function VisaoGeral() {
                 <p className="font-medium">{j.nome}</p>
                 <p className="truncate text-sm text-muted-foreground">{j.desc}</p>
               </div>
-              <Toggle on={ativos[i]} label={j.nome} onClick={() => setAtivos(ativos.map((a, k) => (k === i ? !a : a)))} />
+              <Toggle on={!!ativos[i]} label={j.nome} onClick={() => setAtivos(ativos.map((a, k) => (k === i ? !a : a)))} />
             </li>
           ))}
         </ul>
