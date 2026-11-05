@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as OverlayRouteImport } from './routes/overlay'
+import { Route as OverlayTorreRouteImport } from './routes/overlay_.torre'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const OverlayRoute = OverlayRouteImport.update({
   path: '/overlay',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OverlayTorreRoute = OverlayTorreRouteImport.update({
+  id: '/overlay_/torre',
+  path: '/overlay/torre',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/overlay': typeof OverlayRoute
+  '/overlay/torre': typeof OverlayTorreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/overlay': typeof OverlayRoute
+  '/overlay/torre': typeof OverlayTorreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/overlay': typeof OverlayRoute
+  '/overlay_/torre': typeof OverlayTorreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/overlay'
+  fullPaths: '/' | '/dashboard' | '/overlay' | '/overlay/torre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/overlay'
-  id: '__root__' | '/' | '/dashboard' | '/overlay'
+  to: '/' | '/dashboard' | '/overlay' | '/overlay/torre'
+  id: '__root__' | '/' | '/dashboard' | '/overlay' | '/overlay_/torre'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
   OverlayRoute: typeof OverlayRoute
+  OverlayTorreRoute: typeof OverlayTorreRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OverlayRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/overlay_/torre': {
+      id: '/overlay_/torre'
+      path: '/overlay/torre'
+      fullPath: '/overlay/torre'
+      preLoaderRoute: typeof OverlayTorreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
   OverlayRoute: OverlayRoute,
+  OverlayTorreRoute: OverlayTorreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
